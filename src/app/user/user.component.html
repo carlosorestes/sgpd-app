@@ -1,0 +1,19 @@
+<div class="col-md-6">
+    <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>nome</th>
+      <th>phone</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{user.nome}}</td>
+            <td>{{user.phone}}</td>
+            <td><button class="btn btn-danger" (click)="deleteUser(user)"> Delete User</button></td>
+            <td><button class="btn btn-primary" (click)="updateUser(user)"> Update User</button></td>
+            </tr>
+    </tbody>
+      </table>
+  
+    </div>
