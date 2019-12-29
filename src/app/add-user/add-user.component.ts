@@ -13,19 +13,32 @@ export class AddUserComponent implements OnInit {
   user: User = new User("","","","","");
 
   constructor(private httpClientService: HttpClientService,
-    private activatedRoute:ActivatedRoute,
-    private router:Router) { }
+    private router:Router,
+    private activatedRoute: ActivatedRoute) { 
+    }
 
   ngOnInit() {
-    console.log('AQUI ....');
-    console.log(this.router.getCurrentNavigation());
+    this.activatedRoute.queryParams.subscribe(params => {
+        this.user['id'] = params['id']
+        this.user['nome'] = params['nome'];
+        this.user['phone'] = params['phone'];
+        this.user['password'] = params['password'];
+      });
   }
 
-  createEmployee(): void {
-    this.httpClientService.createUser(this.user)
+  saveEmployee(): void {
+
+    if (this.user['id']){
+      this.httpClientService.updateUser(this.user)
+          .subscribe (data => {
+            alert("User created successfully.");
+          });
+    } else {
+      this.httpClientService.createUser(this.user)
         .subscribe( data => {
           alert("User created successfully.");
         });
+    }
 
   };
 

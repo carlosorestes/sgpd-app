@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientService } from '../service/http-client.service';
 import { User } from '../model/user';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -29,7 +29,11 @@ export class UserComponent implements OnInit {
   };
 
   updateUser(user: User): void {
-    this.router.navigate(['user'], {state: {data:{user}}});
+    let navigationExtras: NavigationExtras = {
+      queryParams: user
+    }
+
+    this.router.navigate(['user'], navigationExtras);
   };
 
   handleSuccessfulResponse(response)
