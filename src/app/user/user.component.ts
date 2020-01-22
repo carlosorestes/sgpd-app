@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClientService } from '../service/http-client.service';
 import { User } from '../model/user';
 import { Router, NavigationExtras } from '@angular/router';
+import { EventEmitterService } from '../service/event-emitter.service';
 
 @Component({
   selector: 'app-user',
@@ -13,9 +14,20 @@ export class UserComponent implements OnInit {
   users:User[];
 
   constructor(private httpClientService:HttpClientService,
-    private router: Router) { }
+    private router: Router,
+    private eventEmitterService: EventEmitterService) { }
 
   ngOnInit() {
+    if (this.eventEmitterService.subsVar==undefined) {    
+      this.eventEmitterService.subsVar = this.eventEmitterService.    
+      invokeFindAllUserFromUser.subscribe((name:string) => {    
+        this.findAllUsers();    
+      });    
+    }
+    this.findAllUsers();  
+  }
+
+  findAllUsers(){
     this.httpClientService.getUsers().subscribe(
       response =>this.handleSuccessfulResponse(response),
      );

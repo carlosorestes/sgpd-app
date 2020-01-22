@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClientService } from '../service/http-client.service';
 import { User } from '../model/user';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EventEmitterService } from '../service/event-emitter.service';
 
 @Component({
   selector: 'app-add-user',
@@ -14,7 +15,8 @@ export class AddUserComponent implements OnInit {
 
   constructor(private httpClientService: HttpClientService,
     private router:Router,
-    private activatedRoute: ActivatedRoute) { 
+    private activatedRoute: ActivatedRoute,
+    private eventEmitterService: EventEmitterService) { 
     }
 
   ngOnInit() {
@@ -31,15 +33,20 @@ export class AddUserComponent implements OnInit {
     if (this.user['id']){
       this.httpClientService.updateUser(this.user)
           .subscribe (data => {
+            this.listAllUser();
             alert("User created successfully.");
           });
     } else {
       this.httpClientService.createUser(this.user)
         .subscribe( data => {
+          this.listAllUser();
           alert("User created successfully.");
         });
     }
-
   };
+
+  listAllUser(){
+    this.eventEmitterService.listAllUser();
+  }
 
 }

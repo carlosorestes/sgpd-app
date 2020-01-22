@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { BasicAuthHtppInterceptorServiceService } from './service/basic-auth-htpp-interceptor-service.service';
+import { EventEmitterService } from './service/event-emitter.service';
 
 @NgModule({
   declarations: [
@@ -29,9 +30,12 @@ import { BasicAuthHtppInterceptorServiceService } from './service/basic-auth-htp
     HttpClientModule,
     FormsModule
   ],
-  providers: [{
-    provide:HTTP_INTERCEPTORS, useClass:BasicAuthHtppInterceptorServiceService, multi:true
-  }],
+  providers: [
+    EventEmitterService,
+    { provide:HTTP_INTERCEPTORS, 
+      useClass:BasicAuthHtppInterceptorServiceService, 
+      multi:true
+   }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
