@@ -1,1 +1,68 @@
-<p>client works!</p>
+<fieldset class="border p-2">
+    <legend class="w-auto">Cliente</legend>
+    <div class="col-md-6">
+        <div class="p-2 bd-highlight justify-content-lg-center">
+          <form [formGroup]="angForm" novalidate>
+            <div class="form-group">
+              <label>Nome:</label>
+              <input type="text" class="form-control form-control-sm" 
+                formControlName="nome" 
+                #nome />
+            </div>
+            <div *ngIf="angForm.controls['nome'].invalid && (angForm.controls['nome'].dirty || angForm.controls['nome'].touched)" class="alert alert-danger">
+              <div *ngIf="angForm.controls['nome'].errors.required">
+                Nome do Cliente é Obrigatório.
+              </div>
+            </div>
+            <div class="form-group">
+              <label>CPF: </label>
+              <input type="text" class="form-control form-control-sm" 
+                formControlName="cpf" 
+                #cpf />
+            </div>
+            <div *ngIf="angForm.controls['cpf'].invalid && (angForm.controls['cpf'].dirty || angForm.controls['cpf'].touched)" class="alert alert-danger">
+              <div *ngIf="angForm.controls['cpf'].errors.required">
+                CPF do Cliente é Obrigatório.
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Telefone 1:</label>
+              <input type="text" class="form-control" 
+                formControlName="telefone1" 
+                #telefone1
+              />
+            </div>
+            <div *ngIf="angForm.controls['telefone1'].invalid && (angForm.controls['telefone1'].dirty || angForm.controls['telefone1'].touched)" class="alert alert-danger">
+              <div *ngIf="angForm.controls['telefone1'].errors.required">
+                Telefone do Cliente é Obrigatório.
+              </div>
+            </div>
+            <div class="form-group">
+                <label>Telefone 2:</label>
+                <input type="text" class="form-control" 
+                  formControlName="telefone2" 
+                  #telefone2
+                />
+              </div>
+            <!-- <div class="form-group">
+                <button (click) = "addProduct(nome.value, telefone1.value, telefone2.value)" type="submit" class="btn btn-primary"
+                [disabled]="angForm.pristine || angForm.invalid" >
+                  Salvar
+                </button>
+            </div> -->
+            <div class="text-right">
+                <div class="btn-group mr-2" role="group">
+                    <button type="button" class="btn btn-success" 
+                            (click) = "addProduct(nome.value, cpf.value, telefone1.value, telefone2.value)" 
+                            [disabled]="angForm.pristine || angForm.invalid">
+                            Save
+                    </button>
+                  </div>
+                  <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-danger" (click)="saveEmployee()">Cancel</button>
+                  </div>
+            </div>
+          </form>
+        </div>
+      </div>
+</fieldset>
