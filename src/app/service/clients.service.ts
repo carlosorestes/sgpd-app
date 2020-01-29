@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Client } from '../client/client';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class ClientsService {
 
   uri = 'http://localhost:8080/persons';
+  httpClient: any;
 
   constructor(private http: HttpClient) { }
 
@@ -20,5 +22,14 @@ export class ClientsService {
     console.log(obj);
     this.http.post(`${this.uri}`, obj)
         .subscribe(res => console.log('Done'));
+  }
+
+  getClients() {
+    return this.http.get(`${this.uri}`);
+  }
+
+  public delete(client) {
+    console.log('DEL Client');
+    return this.http.delete<Client>("http://localhost:8080/persons" + "/"+ client.id);
   }
 }

@@ -15,6 +15,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { BasicAuthHtppInterceptorServiceService } from './service/basic-auth-htpp-interceptor-service.service';
 import { EventEmitterService } from './service/event-emitter.service';
 import { ClientModule } from './client/client.module';
+import { ClientListComponent } from './client/client-list/client-list.component';
 
 @NgModule({
   declarations: [

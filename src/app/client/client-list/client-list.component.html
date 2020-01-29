@@ -1,0 +1,23 @@
+<div class="col-md-12">
+    <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Nome</th>
+      <th>CPF</th>
+      <th>Telefone 1</th>
+      <th>Telefone 2</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let client of clients">
+            <td>{{client.nome}}</td>
+            <td>{{client.cpf}}</td>
+            <td>{{client.telefone1}}</td>
+            <td>{{client.telefone2}}</td>
+            <td><button class="btn btn-danger" (click)="delete(client)">Delete</button></td>
+            <td><button class="btn btn-primary" (click)="update(client)">Update</button></td>
+            </tr>
+    </tbody>
+      </table>
+  
+    </div>
