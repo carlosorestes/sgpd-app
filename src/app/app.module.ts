@@ -16,6 +16,7 @@ import { BasicAuthHtppInterceptorServiceService } from './service/basic-auth-htp
 import { EventEmitterService } from './service/event-emitter.service';
 import { ClientModule } from './client/client.module';
 import { ClientListComponent } from './client/client-list/client-list.component';
+import { DispatchModule } from './dispatch/dispatch.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ClientListComponent } from './client/client-list/client-list.component'
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    ClientModule
+    ClientModule,
+    DispatchModule
   ],
   providers: [
     EventEmitterService,

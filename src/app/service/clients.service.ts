@@ -28,8 +28,14 @@ export class ClientsService {
     return this.http.get(`${this.uri}`);
   }
 
-  public delete(client) {
+  delete(client) {
     console.log('DEL Client');
     return this.http.delete<Client>("http://localhost:8080/persons" + "/"+ client.id);
   }
+
+  findByCpf(cpf){
+    console.log('FindByCpf Client');
+    return this.http.get<Client>("http://localhost:8080/persons" + "/"+ cpf);
+  }
+
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ClientsService } from 'src/app/service/clients.service';
+import { Client } from 'src/app/client/client';
 
 @Component({
   selector: 'app-dispatch',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DispatchComponent implements OnInit {
 
-  constructor() { }
+  client:Client;
+
+  constructor(private clientService: ClientsService) { }
 
   ngOnInit() {
+  }
+
+  findClient(cpf){
+    this.client = this.clientService.findByCpf(cpf);
   }
 
 }

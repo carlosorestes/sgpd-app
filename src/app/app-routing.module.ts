@@ -6,11 +6,13 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthGaurdService } from './service/auth-gaurd.service';
 import { ClientComponent } from './client/client/client.component';
+import { DispatchComponent } from './dispatch/dispatch/dispatch.component';
 
 const routes: Routes = [
   { path:'', component: UserComponent, canActivate:[AuthGaurdService]},
   { path:'user', component: AddUserComponent, canActivate:[AuthGaurdService]},
   { path:'client', component: ClientComponent, canActivate:[AuthGaurdService]},
+  { path:'dispatch', component: DispatchComponent, canActivate:[AuthGaurdService]},
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent, canActivate:[AuthGaurdService] },
   
