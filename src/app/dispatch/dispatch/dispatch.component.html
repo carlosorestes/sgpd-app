@@ -1,25 +1,29 @@
 <fieldset class="border p-2">
     <legend class="w-auto">Cliente</legend>
     <div class="container">
-        <form class="form-inline">
+        <form [formGroup]="angForm" novalidate class="form-inline">
             <div class="form-group mb-2">
                 <label for="staticEmail2" class="sr-only">Nome</label>
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="">
+                <input type="text" readonly class="form-control-plaintext" formControlName="nome" #nome id="nome" name="nome">
             </div>
             <div class="form-group mx-sm-3 mb-2">
                 <label for="inputPassword2" class="sr-only">CPF</label>
-                <input type="text" class="form-control" id="inputPassword2" placeholder="CPF">
+                <input type="text" class="form-control" placeholder="CPF" formControlName="cpf" #cpf>
             </div>
-            <button type="submit" class="btn btn-primary mb-2">Buscar Cliente</button>
+            <button type="submit"
+                    (click) = "findClient(cpf.value)" 
+                    class="btn btn-primary mb-2">
+                    Buscar Cliente
+            </button>
         </form>
     </div>
 </fieldset>
 <fieldset class="border p-2">
-    <legend class="w-auto">Veículos <button type="submit" class="btn btn-primary mb-2">Adicionar Veículo</button>
+    <legend class="w-auto">Veículos
     </legend>
     <div class="container">
         <table class="table table-hover">
-            <thead>
+            <thead align="center">
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Veículo</th>
@@ -28,10 +32,10 @@
                     <th scope="col">Cor</th>
                     <th scope="col">Placa</th>
                     <th scope="col">RENAVAM</th>
-                    <th scope="col"></th>
+                    <th scope="col"><button class="btn btn-primary">+</button></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody align="center">
                 <tr>
                     <th scope="row">1</th>
                     <td>Veiculo 1</td>
@@ -73,45 +77,51 @@
             <div class="row">
                 <div class="form-group col-md-3">
                     <label>Despachante:</label>
-                    <input type="text" class="form-control form-control-sm" formControlName="nome" #nome />
+                    <input type="text" readonly class="form-control form-control-sm" formControlName="despachante" #despachante id="despachante" name="despachante"/>
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Indicação:</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="indicacao" #indicacao />
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-3">
                     <label>Data Entrada:</label>
-                    <input type="datetime" class="form-control form-control-sm" formControlName="nome" #nome />
+                    <input type="datetime" class="form-control form-control-sm" formControlName="dtEntrada" #dtEntrada />
                 </div>
                 <div class="form-group col-md-3">
                     <label>Data Entrada DTRAN:</label>
-                    <input type="datetime" class="form-control form-control-sm" formControlName="nome" #nome />
+                    <input type="datetime" class="form-control form-control-sm" formControlName="dtEntradaOrg" #dtEntradaOrg />
                 </div>
                 <div class="form-group col-md-3">
                     <label>Data Pronto:</label>
-                    <input type="datetime" class="form-control form-control-sm" formControlName="nome" #nome />
+                    <input type="datetime" class="form-control form-control-sm" formControlName="dtPronto" #dtPronto />
                 </div>
                 <div class="form-group col-md-3">
                     <label>Data Entega:</label>
-                    <input type="datetime" class="form-control form-control-sm" formControlName="nome" #nome />
+                    <input type="datetime" class="form-control form-control-sm" formControlName="dtEntrega" #dtEntrega />
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-12">
                     <label>Observação:</label>
-                    <textarea class="form-control form-control-sm" rows="3" placeholder="Observação Despacho"></textarea>
+                    <textarea class="form-control form-control-sm" 
+                              rows="3" 
+                              placeholder="Observação Despacho"
+                              formControlName="obs" #obs>
+                    </textarea>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-12">
                     <div class="text-right">
                         <div class="btn-group mr-2" role="group">
-                            <button type="button" class="btn btn-success"
-                                (click)="addClient(nome.value, cpf.value, telefone1.value, telefone2.value)"
-                                [disabled]="angForm.pristine || angForm.invalid">
+                            <button type="button" class="btn btn-success">
                                 Save
                             </button>
                         </div>
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-danger" (click)="saveEmployee()">Cancel</button>
+                            <button type="button" class="btn btn-danger">Cancel</button>
                         </div>
                     </div>
                 </div>
