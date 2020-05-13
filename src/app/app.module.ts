@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
 
+
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddUserComponent } from './add-user/add-user.component';
 import { HeaderComponent } from './header/header.component';
@@ -17,6 +18,9 @@ import { EventEmitterService } from './service/event-emitter.service';
 import { ClientModule } from './client/client.module';
 import { ClientListComponent } from './client/client-list/client-list.component';
 import { DispatchModule } from './dispatch/dispatch.module';
+import { VehicleComponent } from './vehicle/vehicle.component';
+import { UtilsModule } from './utils/main-pipe/utils.module';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +30,8 @@ import { DispatchModule } from './dispatch/dispatch.module';
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    VehicleComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,8 @@ import { DispatchModule } from './dispatch/dispatch.module';
     FormsModule,
     ReactiveFormsModule,
     ClientModule,
-    DispatchModule
+    DispatchModule,
+    UtilsModule
   ],
   providers: [
     EventEmitterService,
@@ -43,6 +49,8 @@ import { DispatchModule } from './dispatch/dispatch.module';
       useClass:BasicAuthHtppInterceptorServiceService, 
       multi:true
    }],
+   exports: [
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

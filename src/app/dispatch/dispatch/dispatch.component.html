@@ -4,70 +4,77 @@
         <form [formGroup]="angForm" novalidate class="form-inline">
             <div class="form-group mb-2">
                 <label for="staticEmail2" class="sr-only">Nome</label>
-                <input type="text" readonly class="form-control-plaintext" formControlName="nome" #nome id="nome" name="nome">
+                <input type="text" readonly class="form-control-plaintext" formControlName="nome" #nome id="nome"
+                    name="nome">
             </div>
             <div class="form-group mx-sm-3 mb-2">
                 <label for="inputPassword2" class="sr-only">CPF</label>
                 <input type="text" class="form-control" placeholder="CPF" formControlName="cpf" #cpf>
             </div>
-            <button type="submit"
-                    (click) = "findClient(cpf.value)" 
-                    class="btn btn-primary mb-2">
-                    Buscar Cliente
+            <button type="submit" (click)="findClient(cpf.value)" class="btn btn-primary mb-2">
+                Buscar Cliente
             </button>
         </form>
     </div>
 </fieldset>
 <fieldset class="border p-2">
-    <legend class="w-auto">Veículos
-    </legend>
-    <div class="container">
-        <table class="table table-hover">
-            <thead align="center">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Veículo</th>
-                    <th scope="col">Ano</th>
-                    <th scope="col">Modelo</th>
-                    <th scope="col">Cor</th>
-                    <th scope="col">Placa</th>
-                    <th scope="col">RENAVAM</th>
-                    <th scope="col"><button class="btn btn-primary">+</button></th>
-                </tr>
-            </thead>
-            <tbody align="center">
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Veiculo 1</td>
-                    <td>Ano 1</td>
-                    <td>Modelo 1</td>
-                    <td>Cor 1</td>
-                    <td>Placa 1</td>
-                    <td>RENAVAM</td>
+    <legend class="w-auto">Veículos</legend>
+    <div class="table-responsive-lg">
+        <form [formGroup]="formVeicle" novalidate class="form-inline">
+            <table class="table table-hover">
+
+                <thead align="center">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">
+                            <label>Tipo:</label>
+                            <select class="selectpicker" data-live-search="true" class="form-control form-control-sm"
+                                formControlName="tipo" #tipo id="tipo">
+                                <option hidden disabled selected value> -- </option>
+                                <option *ngFor="let vehicle of vehicles; let i = index" [value]="vehicles[i]._id">
+                                    {{vehicles[i].nome}}
+                                </option>
+                            </select>
+                        </th>
+                        <th scope="col">
+                            <label>Ano:</label>
+                            <input type="number" maxlength="4" class="form-control form-control-sm" formControlName="ano" #ano id="ano"/>
+                        </th>
+                        <th scope="col">
+                            <label>Modelo:</label>
+                            <input type="text" class="form-control form-control-sm" formControlName="modelo" #modelo id="modelo"/>
+                        </th>
+                        <th scope="col">
+                            <label>Cor:</label>
+                            <input type="text" class="form-control form-control-sm" formControlName="cor" #cor id="cor"/>
+                        </th>
+                        <th scope="col">
+                            <label>Placa:</label>
+                            <input type="text" class="form-control form-control-sm text-uppercase" formControlName="placa" #placa id="placa"/>
+                        </th>
+                        <th scope="col">
+                            <label>RENAVAM:</label>
+                            <input type="text" class="form-control form-control-sm text-uppercase" formControlName="renavam" #renavam id="renavam"/>
+                        </th>
+                        <th scope="col">
+                            <button type="submit" (click)="addVehicles()" class="btn btn-primary">+</button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody align="center">
+                <tr *ngFor="let vehicle of vehiclesAdd;let indexOfelement=index;">
+                    <th scope="row">{{indexOfelement}}</th>
+                    <td>{{vehicles | filterList:vehicle.tipo}}</td>
+                    <td>{{vehicle.ano}}</td>
+                    <td>{{vehicle.modelo}}</td>
+                    <td>{{vehicle.cor}}</td>
+                    <td>{{vehicle.placa}}</td>
+                    <td>{{vehicle.renavam}}</td>
                     <td><button class="btn btn-primary">Editar</button></td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Veiculo 2</td>
-                    <td>Ano 2</td>
-                    <td>Modelo 2</td>
-                    <td>Cor 2</td>
-                    <td>Placa 2</td>
-                    <td>RENAVAM</td>
-                    <td><button class="btn btn-primary">Editar</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Veiculo 3</td>
-                    <td>Ano 3</td>
-                    <td>Modelo 3</td>
-                    <td>Cor 3</td>
-                    <td>Placa 3</td>
-                    <td>RENAVAM</td>
-                    <td><button class="btn btn-primary">Editar</button></td>
-                </tr>
-            </tbody>
-        </table>
+                 </tbody>
+            </table>
+        </form>
     </div>
 </fieldset>
 <fieldset class="border p-2">
@@ -77,7 +84,8 @@
             <div class="row">
                 <div class="form-group col-md-3">
                     <label>Despachante:</label>
-                    <input type="text" readonly class="form-control form-control-sm" formControlName="despachante" #despachante id="despachante" name="despachante"/>
+                    <input type="text" readonly class="form-control form-control-sm" formControlName="despachante"
+                        #despachante id="despachante" name="despachante" />
                 </div>
                 <div class="form-group col-md-3">
                     <label>Indicação:</label>
@@ -87,11 +95,13 @@
             <div class="row">
                 <div class="form-group col-md-3">
                     <label>Data Entrada:</label>
-                    <input type="datetime" class="form-control form-control-sm" formControlName="dtEntrada" #dtEntrada />
+                    <input type="datetime" class="form-control form-control-sm" formControlName="dtEntrada"
+                        #dtEntrada />
                 </div>
                 <div class="form-group col-md-3">
                     <label>Data Entrada DTRAN:</label>
-                    <input type="datetime" class="form-control form-control-sm" formControlName="dtEntradaOrg" #dtEntradaOrg />
+                    <input type="datetime" class="form-control form-control-sm" formControlName="dtEntradaOrg"
+                        #dtEntradaOrg />
                 </div>
                 <div class="form-group col-md-3">
                     <label>Data Pronto:</label>
@@ -99,16 +109,15 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label>Data Entega:</label>
-                    <input type="datetime" class="form-control form-control-sm" formControlName="dtEntrega" #dtEntrega />
+                    <input type="datetime" class="form-control form-control-sm" formControlName="dtEntrega"
+                        #dtEntrega />
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-12">
                     <label>Observação:</label>
-                    <textarea class="form-control form-control-sm" 
-                              rows="3" 
-                              placeholder="Observação Despacho"
-                              formControlName="obs" #obs>
+                    <textarea class="form-control form-control-sm" rows="3" placeholder="Observação Despacho"
+                        formControlName="obs" #obs>
                     </textarea>
                 </div>
             </div>

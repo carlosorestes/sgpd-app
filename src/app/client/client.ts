@@ -1,3 +1,5 @@
+import { Vehicle } from '../model/vehicle.model';
+
 export class Client {
     constructor(
       _id: string,
@@ -5,5 +7,6 @@ export class Client {
       cpf: string,
       telefone1: string,
       telefone2: string,
+      vehicleList: Vehicle[]
       ) {}
     }

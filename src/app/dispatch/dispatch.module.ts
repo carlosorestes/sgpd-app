@@ -6,6 +6,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DispatchListComponent } from './dispatch-list/dispatch-list.component';
+import { UtilsModule } from '../utils/main-pipe/utils.module';
 
 @NgModule({
   declarations: [DispatchComponent, DispatchListComponent],
@@ -15,7 +16,8 @@ import { DispatchListComponent } from './dispatch-list/dispatch-list.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    UtilsModule
   ]
 })
 export class DispatchModule { }
