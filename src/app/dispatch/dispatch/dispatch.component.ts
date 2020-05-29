@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 
 import { ClientsService } from 'src/app/service/clients.service';
 import { Client } from 'src/app/client/client';
@@ -15,17 +15,18 @@ export class DispatchComponent implements OnInit {
   client: Client;
   vehicle: Vehicle;
   angForm: FormGroup;
-  formVeicle: FormGroup;
+  formVehicle: FormGroup;
   vehicles = [];
   vehiclesAdd = [];
   constructor(private fb: FormBuilder,
               private fbVehicle: FormBuilder,
               private clientService: ClientsService) { 
-    this.createForm();
-    this.vehicles = this.getVehicle();
+    
   }
 
   ngOnInit() {
+    this.createForm();
+    this.vehicles = this.getVehicle();
   }
 
   createForm() {
@@ -38,33 +39,61 @@ export class DispatchComponent implements OnInit {
       dtEntradaOrg: [''],
       dtPronto: [''],
       dtEntrega: [''],
-      obs: ['']
+      obs: [''],
+      vehicles: this.fb.array([])
     });
 
-    this.formVeicle = this.fbVehicle.group({
-      tipo:[''],
-      ano:[''],
-      modelo:[''],
-      cor:[''],
-      placa:[''],
-      renavam:['']
+    this.formVehicle = this.fbVehicle.group({
+      tipo:['', Validators.required],
+      ano:['', Validators.required],
+      modelo:['', Validators.required],
+      cor:['', Validators.required],
+      placa:['', Validators.required],
+      renavam:['', Validators.required]
     });
   }
-
+  // this.orderForm.get('items')
    addVehicles(){
-     this.vehiclesAdd.push(this.formVeicle.value);
-     this.formVeicle.reset();
+     this.vehiclesAdd.push(this.formVehicle.value);
+     this.formVehicle.reset();
    }
 
   findClient(cpf){
     this.clientService.findByCpf(cpf).subscribe((data: any[])=>{
         this.angForm.get('nome').setValue(data['nome']);
         this.angForm.get('despachante').enable();
-        this.angForm.get('despachante').setValue(sessionStorage.getItem('usernome'));
+        this.angForm.get('despachante').setValue(sessionStorage.getItem('username'));
     });
   }
 
-  editVehicle(){
+  editVeicle(indexOfVehicle){
+    this.formVehicle.setValue(this.vehiclesAdd[indexOfVehicle]);
+    this.vehiclesAdd.splice(indexOfVehicle, 1);
+  }
+
+  deleteVeicle(indexOfVehicle){
+    this.vehiclesAdd.splice(indexOfVehicle, 1);
+  }
+
+  save(){
+    const control = <FormArray>this.angForm.get('vehicles');
+    control.clear();
+    this.vehiclesAdd.forEach(vehicle => {
+      control.push(this.patchValues(vehicle))
+    });
+    console.log(this.angForm.value);
+  }
+
+  // assign the values
+  patchValues(vehicle) {
+    return this.fb.group({
+      tipo: [vehicle.tipo],
+      ano: [vehicle.ano],
+      modelo: [vehicle.modelo],
+      cor: [vehicle.cor],
+      placa: [vehicle.placa],
+      renavam: [vehicle.renavam]
+    })    
   }
 
   getVehicle() {

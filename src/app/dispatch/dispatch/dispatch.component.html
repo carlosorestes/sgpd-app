@@ -7,6 +7,7 @@
                 <input type="text" readonly class="form-control-plaintext" formControlName="nome" #nome id="nome"
                     name="nome">
             </div>
+
             <div class="form-group mx-sm-3 mb-2">
                 <label for="inputPassword2" class="sr-only">CPF</label>
                 <input type="text" class="form-control" placeholder="CPF" formControlName="cpf" #cpf>
@@ -20,9 +21,8 @@
 <fieldset class="border p-2">
     <legend class="w-auto">Veículos</legend>
     <div class="table-responsive-lg">
-        <form [formGroup]="formVeicle" novalidate class="form-inline">
+        <form [formGroup]="formVehicle" novalidate class="form-inline">
             <table class="table table-hover">
-
                 <thead align="center">
                     <tr>
                         <th scope="col">#</th>
@@ -38,41 +38,53 @@
                         </th>
                         <th scope="col">
                             <label>Ano:</label>
-                            <input type="number" maxlength="4" class="form-control form-control-sm" formControlName="ano" #ano id="ano"/>
+                            <input type="number" maxlength="4" class="form-control form-control-sm"
+                                formControlName="ano" #ano id="ano" />
                         </th>
                         <th scope="col">
                             <label>Modelo:</label>
-                            <input type="text" class="form-control form-control-sm" formControlName="modelo" #modelo id="modelo"/>
+                            <input type="text" class="form-control form-control-sm" formControlName="modelo" #modelo
+                                id="modelo" />
                         </th>
                         <th scope="col">
                             <label>Cor:</label>
-                            <input type="text" class="form-control form-control-sm" formControlName="cor" #cor id="cor"/>
+                            <input type="text" class="form-control form-control-sm" formControlName="cor" #cor
+                                id="cor" />
                         </th>
                         <th scope="col">
                             <label>Placa:</label>
-                            <input type="text" class="form-control form-control-sm text-uppercase" formControlName="placa" #placa id="placa"/>
+                            <input type="text" class="form-control form-control-sm text-uppercase"
+                                formControlName="placa" #placa id="placa" />
                         </th>
                         <th scope="col">
                             <label>RENAVAM:</label>
-                            <input type="text" class="form-control form-control-sm text-uppercase" formControlName="renavam" #renavam id="renavam"/>
+                            <input type="text" class="form-control form-control-sm text-uppercase"
+                                formControlName="renavam" #renavam id="renavam" />
                         </th>
                         <th scope="col">
                             <button type="submit" (click)="addVehicles()" class="btn btn-primary">+</button>
                         </th>
+                        <th scope="col">
+                        </th>
                     </tr>
                 </thead>
                 <tbody align="center">
-                <tr *ngFor="let vehicle of vehiclesAdd;let indexOfelement=index;">
-                    <th scope="row">{{indexOfelement}}</th>
-                    <td>{{vehicles | filterList:vehicle.tipo}}</td>
-                    <td>{{vehicle.ano}}</td>
-                    <td>{{vehicle.modelo}}</td>
-                    <td>{{vehicle.cor}}</td>
-                    <td>{{vehicle.placa}}</td>
-                    <td>{{vehicle.renavam}}</td>
-                    <td><button class="btn btn-primary">Editar</button></td>
-                </tr>
-                 </tbody>
+                    <tr *ngFor="let vehicle of vehiclesAdd;let indexOfelement=index;">
+                        <th scope="row">{{indexOfelement}}</th>
+                        <td>{{vehicles | filterList:vehicle.tipo}}</td>
+                        <td>{{vehicle.ano}}</td>
+                        <td>{{vehicle.modelo}}</td>
+                        <td>{{vehicle.cor}}</td>
+                        <td>{{vehicle.placa  | uppercase}}</td>
+                        <td>{{vehicle.renavam  | uppercase}}</td>
+                        <td>
+                            <button class="btn btn-primary" (click)="editVeicle(indexOfelement)">Editar</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" (click)="deleteVeicle(indexOfelement)">-</button>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </form>
     </div>
@@ -125,7 +137,7 @@
                 <div class="form-group col-md-12">
                     <div class="text-right">
                         <div class="btn-group mr-2" role="group">
-                            <button type="button" class="btn btn-success">
+                            <button type="button" class="btn btn-success" (click)="save()">
                                 Save
                             </button>
                         </div>

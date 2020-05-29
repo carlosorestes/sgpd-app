@@ -5,9 +5,7 @@
           <form [formGroup]="angForm" novalidate>
             <div class="form-group">
               <label>Nome:</label>
-              <input type="text" class="form-control form-control-sm" 
-                formControlName="nome" 
-                #nome />
+              <input type="text" class="form-control form-control-sm" formControlName="nome" #nome />
             </div>
             <div *ngIf="angForm.controls['nome'].invalid && (angForm.controls['nome'].dirty || angForm.controls['nome'].touched)" class="alert alert-danger">
               <div *ngIf="angForm.controls['nome'].errors.required">
