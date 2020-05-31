@@ -85,7 +85,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/styles/bootstrap-4.0.0-dist/js/bootstrap.min.js"
+            ]
           }
         },
         "lint": {
