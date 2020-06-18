@@ -1,0 +1,53 @@
+http://localhost:3000/orders
+
+###
+
+POST http://localhost:3000/orders HTTP/1.1
+content-type: application/json
+
+{
+    "id": 5,
+    "nome": "Person 111",
+    "cpf": "000000000",
+    "despachante": "javainuse",
+    "indicacao": "INDICACAO TESTE 01",
+    "dtEntrada": "2020-06-13",
+    "dtEntradaOrg": "2020-06-13",
+    "dtPronto": "2020-06-13",
+    "dtEntrega": "2020-06-13",
+    "obs": "OBSERVACAO TESTE",
+    "vehicles": [
+      {
+        "tipo": "2",
+        "ano": 2020,
+        "modelo": "MODELO TESTE 02",
+        "cor": "COR TESTE 02",
+        "placa": "PLACA TESTE 02",
+        "renavam": "RENAVAM TESTE 02"
+      },
+      {
+        "tipo": "3",
+        "ano": 2020,
+        "modelo": "MODELO TESTE 03",
+        "cor": "COR TESTE 03",
+        "placa": "PLACA TESTE 03",
+        "renavam": "RENAVAM TESTE 03"
+      },
+      {
+        "tipo": "4",
+        "ano": 2020,
+        "modelo": "MODELO TESTE 04",
+        "cor": "COR TESTE 04",
+        "placa": "PLACA TESTE 04",
+        "renavam": "RENAVAM TESTE 04"
+      },
+      {
+        "tipo": "5",
+        "ano": 2020,
+        "modelo": "MODELO TESTE 05",
+        "cor": "COR TESTE 05",
+        "placa": "PLACA TESTE 05",
+        "renavam": "RENAVAM TESTE 05"
+      }
+    ]
+  }

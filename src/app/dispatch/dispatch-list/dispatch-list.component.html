@@ -1,16 +1,128 @@
 <fieldset class="border p-2">
-    <legend class="w-auto">Cliente</legend>
-    <div class="container">
-        <form class="form-inline">
-            <div class="form-group mb-2">
-                <label for="staticEmail2" class="sr-only">Nome</label>
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="">
+    <legend class="w-auto">Pesquisa Despacho</legend>
+    <div class="p-2 bd-highlight justify-content-lg-center">
+        <form [formGroup]="angForm" novalidate>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label>Despachante:</label>
+                    <select class="selectpicker" data-live-search="true" class="form-control form-control-sm"
+                        formControlName="despachante" #despachante id="despachante">
+                        <option hidden disabled selected value> -- </option>
+                        <option *ngFor="let client of clients; let i = index" [value]="clients[i]._id">
+                            {{clients[i].nome}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Indicação:</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="indicacao" #indicacao />
+                </div>
             </div>
-            <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">CPF</label>
-                <input type="text" class="form-control" id="inputPassword2" placeholder="CPF">
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label>Data Entrada Inicio:</label>
+                    <input type="date" class="form-control form-control-sm datepicker" data-date-format="mm/dd/yyyy"
+                        formControlName="dtEntradaInicio" #dtEntradaInicio />
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Data Entrada Fim:</label>
+                    <input type="date" class="form-control form-control-sm datepicker" data-date-format="mm/dd/yyyy"
+                        formControlName="dtEntradaFim" #dtEntradaFim />
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Data Entrega Inicio:</label>
+                    <input type="date" class="form-control form-control-sm datepicker" data-date-format="mm/dd/yyyy"
+                        formControlName="dtEntregaInicio" #dtEntregaInicio />
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Data Entrega Fim:</label>
+                    <input type="date" class="form-control form-control-sm datepicker" data-date-format="mm/dd/yyyy"
+                        formControlName="dtEntregaFim" #dtEntregaFim />
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary mb-2">Buscar Cliente</button>
+            <div class="row">
+                <div class="form-group col-md-2">
+                    <label>Tipo:</label>
+                    <select class="selectpicker" data-live-search="true" class="form-control form-control-sm"
+                        formControlName="tipo" #tipo id="tipo">
+                        <option hidden disabled selected value> -- </option>
+                        <option *ngFor="let vehicle of vehicles; let i = index" [value]="vehicles[i]._id">
+                            {{vehicles[i].nome}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Ano:</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="ano" #ano />
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Modelo:</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="modelo" #modelo />
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Cor:</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="cor" #cor />
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Placa:</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="placa" #placa />
+                </div>
+                <div class="form-group col-md-2">
+                    <label>RENAVAM:</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="renavam" #renavam />
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <div class="text-right">
+                        <div class="btn-group mr-2" role="group">
+                            <button type="button" class="btn btn-primary">
+                                Consultar
+                            </button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-danger">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <table class="table table-striped" *ngIf="dispatchs$ | async as dispatchs; else loading">
+                        <thead>
+                            <tr>
+                                <th>Ordem</th>
+                                <th>Cliente</th>
+                                <th>CPF</th>
+                                <th>Despachante</th>
+                                <th>Data Entrada</th>
+                                <th>Data Entrada Orgao</th>
+                                <th>Data Entrega</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let dispatch of dispatchs">
+                                <td>{{dispatch.id}}</td>
+                                <td>{{dispatch.person.nome}}</td>
+                                <td>{{dispatch.person.cpf}}</td>
+                                <td>{{dispatch.client.nome}}</td>
+                                <td>{{dispatch.dataCriacao}}</td>
+                                <td>{{dispatch.dataEntradaOrgao}}</td>
+                                <td>{{dispatch.dataEntrega}}</td>
+                                <td><button class="btn btn-danger">Delete</button></td>
+                                <td><button class="btn btn-primary">Update</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <ng-template #loading>
+                            <div class="loader"></div>
+                    </ng-template>
+
+                </div>
+            </div>
         </form>
     </div>
 </fieldset>

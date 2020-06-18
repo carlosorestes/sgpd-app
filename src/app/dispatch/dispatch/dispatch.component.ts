@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@ang
 import { ClientsService } from 'src/app/service/clients.service';
 import { Client } from 'src/app/client/client';
 import { Vehicle } from 'src/app/model/vehicle.model';
+import { DispatchService } from 'src/app/service/dispatch.service';
 
 @Component({
   selector: 'app-dispatch',
@@ -12,21 +13,20 @@ import { Vehicle } from 'src/app/model/vehicle.model';
 })
 export class DispatchComponent implements OnInit {
 
-  client: Client;
-  vehicle: Vehicle;
   angForm: FormGroup;
   formVehicle: FormGroup;
   vehicles = [];
   vehiclesAdd = [];
   constructor(private fb: FormBuilder,
               private fbVehicle: FormBuilder,
-              private clientService: ClientsService) { 
+              private clientService: ClientsService,
+              private dispatchService: DispatchService) { 
     
   }
 
   ngOnInit() {
     this.createForm();
-    this.vehicles = this.getVehicle();
+    this.vehicles = this.dispatchService.getVehicle();
   }
 
   createForm() {
@@ -81,7 +81,7 @@ export class DispatchComponent implements OnInit {
     this.vehiclesAdd.forEach(vehicle => {
       control.push(this.patchValues(vehicle))
     });
-    console.log(this.angForm.value);
+    this.dispatchService.save(this.angForm.value);
   }
 
   // assign the values
@@ -95,31 +95,4 @@ export class DispatchComponent implements OnInit {
       renavam: [vehicle.renavam]
     })    
   }
-
-  getVehicle() {
-    // fonte https://www.diariodasleis.com.br/
-    return[
-      { _id: '2', nome: 'Ciclomotor' },
-      { _id: '3', nome: 'Motoneta' },
-      { _id: '4', nome: 'Motocicleta' },
-      { _id: '5', nome: 'Triciclo' },
-      { _id: '6', nome: 'Automóvel' },
-      { _id: '7', nome: 'Micro-Ônibus' },
-      { _id: '8', nome: 'Ônibus' },
-      { _id: '10', nome: 'Reboque' },
-      { _id: '11', nome: 'Semirreboque' },
-      { _id: '13', nome: 'Camioneta' },
-      { _id: '14', nome: 'Caminhão' },
-      { _id: '17', nome: 'Caminhão Trator' },
-      { _id: '18', nome: 'Tr Rodas' },
-      { _id: '19', nome: 'Tr Esteiras' },
-      { _id: '20', nome: 'Tr Misto' },
-      { _id: '21', nome: 'Quadriciclo' },
-      { _id: '22', nome: 'Chassi Plataforma' },
-      { _id: '23', nome: 'Caminhonete' },
-      { _id: '25', nome: 'Utilitário' },
-      { _id: '26', nome: 'Motor-Casa' },
-    ]
-  }
-
 }

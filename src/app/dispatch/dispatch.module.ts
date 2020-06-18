@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DispatchListComponent } from './dispatch-list/dispatch-list.component';
 import { UtilsModule } from '../utils/main-pipe/utils.module';
+import { DispatchService } from '../service/dispatch.service';
 
 @NgModule({
   declarations: [DispatchComponent, DispatchListComponent],
@@ -18,6 +19,8 @@ import { UtilsModule } from '../utils/main-pipe/utils.module';
     FormsModule,
     ReactiveFormsModule,
     UtilsModule
+  ],providers: [
+    DispatchService
   ]
 })
 export class DispatchModule { }

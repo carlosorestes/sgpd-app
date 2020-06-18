@@ -1,16 +1,14 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div><a href="https://www.javainuse.com" class="navbar-brand">SGPD</a></div>
-
         <ul class="navbar-nav">
             <!-- <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/" class="nav-link">View Users</a></li> -->
             <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/user" class="nav-link">Usuario</a></li>
             <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/client" class="nav-link">Cliente</a></li>
             <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/dispatch" class="nav-link">Despacho</a></li>
+            <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/app-dispatch-list" class="nav-link">[Despachos Remetidos]</a></li>
             <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
             <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">LogOut</a></li>
         </ul>
-
     </nav>
-
 </header>

@@ -14,7 +14,7 @@ export class ClientComponent implements OnInit {
 
   angForm: FormGroup;
   constructor(private fb: FormBuilder, 
-              private ps: ClientsService,
+              private clientService: ClientsService,
               private eventEmitterService: EventEmitterService) {
     this.createForm();
   }
@@ -32,7 +32,7 @@ export class ClientComponent implements OnInit {
   }
 
   addClient(nome, cpf, telefone1, telefone2) {
-    this.ps.addClient(nome, cpf, telefone1, telefone2);
+    this.clientService.addClient(nome, cpf, telefone1, telefone2);
     this.findAll();
   }
 
