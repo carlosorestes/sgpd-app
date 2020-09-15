@@ -88,7 +88,7 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-12">
-                    <table class="table table-striped" *ngIf="dispatchs$ | async as dispatchs; else loading">
+                    <table class="table table-striped" *ngIf="dispatchs$ | async as dispatchs; else loadingError">
                         <thead>
                             <tr>
                                 <th>Ordem</th>
@@ -107,18 +107,23 @@
                                 <td>{{dispatch.id}}</td>
                                 <td>{{dispatch.person.nome}}</td>
                                 <td>{{dispatch.person.cpf}}</td>
-                                <td>{{dispatch.client.nome}}</td>
-                                <td>{{dispatch.dataCriacao}}</td>
-                                <td>{{dispatch.dataEntradaOrgao}}</td>
-                                <td>{{dispatch.dataEntrega}}</td>
+                                <td>{{dispatch.user.nome}}</td>
+                                <td>{{dispatch.dataCriacao | date: 'dd/MM/yyyy hh:mm'}}</td>
+                                <td>{{dispatch.dataEntradaOrgao | date: 'dd/MM/yyyy hh:mm'}}</td>
+                                <td>{{dispatch.dataEntrega | date: 'dd/MM/yyyy hh:mm'}}</td>
                                 <td><button class="btn btn-danger">Delete</button></td>
                                 <td><button class="btn btn-primary">Update</button></td>
                             </tr>
                         </tbody>
                     </table>
 
-                    <ng-template #loading>
+                    <ng-template #loadingError>
+                        <div *ngIf="error$ | async; else loading">
+                            Erro ao carregar dados ..
+                        </div>
+                        <ng-template #loading>
                             <div class="loader"></div>
+                        </ng-template>
                     </ng-template>
 
                 </div>

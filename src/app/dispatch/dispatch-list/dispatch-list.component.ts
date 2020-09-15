@@ -6,7 +6,8 @@ import { Client } from 'src/app/client/client';
 import { User } from 'src/app/model/user';
 import { ClientsService } from 'src/app/service/clients.service';
 import { HttpClientService } from 'src/app/service/http-client.service';
-import { Observable } from 'rxjs';
+import { Observable, empty, Subject } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dispatch-list',
@@ -22,6 +23,7 @@ export class DispatchListComponent implements OnInit {
   vehicles = [];
 
   dispatchs$: Observable<Dispatch[]>;
+  error$ = new Subject<boolean>();
 
   constructor(private fb: FormBuilder,
               private dispatchService: DispatchService,
@@ -51,11 +53,26 @@ export class DispatchListComponent implements OnInit {
   }
 
   loadingData(){
-    // carregar dados da tabela de pesquisa
-    // this.dispatchService.list().subscribe(dados => this.dispatchs = dados);
+    // carregar dados da tabela de pesquisa Opcao para subscribe
+    // this.dispatchService.list().subscribe(
+    //   dados => {
+    //     console.log(dados);
+    //   },
+    //   error => {
+    //     console.log(error)
+    //   },
+    //   () => console.log('Observable Complete')
+    // );
 
     // carregar dados da tabela de pesquisa no modo Observable para economia de memoria
-    this.dispatchs$ = this.dispatchService.list();
+    this.dispatchs$ = this.dispatchService.list()
+    .pipe(
+      catchError(error => {
+        console.error(error);
+        this.error$.next(true);
+        return empty();
+      })
+    );
 
     // carregar dados por pequisa do Usuario
     this.userService.getUsers().subscribe(dados => this.clients = dados);
