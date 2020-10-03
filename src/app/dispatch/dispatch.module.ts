@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DispatchListComponent } from './dispatch-list/dispatch-list.component';
 import { UtilsModule } from '../utils/main-pipe/utils.module';
-import { DispatchService } from '../service/dispatch.service';
+import { DispatchService } from './dispatch.service';
 
 @NgModule({
   declarations: [DispatchComponent, DispatchListComponent],

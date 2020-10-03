@@ -13,12 +13,10 @@ export class EventEmitterService {
   constructor() { }
 
   listAllUser() {
-    console.log('99999999999999999999999')
     this.invokeFindAllUserFromUser.emit();    
   }  
 
   listAllClient() {
-    console.log('00000000000000000000000')
     this.invokeFindAllClientFromClient.emit(); 
   }
 }

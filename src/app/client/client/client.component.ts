@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProductsService } from 'src/app/service/products.service';
-import { ClientsService } from 'src/app/service/clients.service';
 import { EventEmitterService } from 'src/app/service/event-emitter.service';
+import { ClientsService } from '../clients.service';
 
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
-  styleUrls: ['./client.component.css']
+  styleUrls: ['./client.component.css'],
 })
 export class ClientComponent implements OnInit {
   
@@ -32,7 +32,8 @@ export class ClientComponent implements OnInit {
   }
 
   addClient(nome, cpf, telefone1, telefone2) {
-    this.clientService.addClient(nome, cpf, telefone1, telefone2);
+    this.clientService.addClient(nome, cpf, telefone1, telefone2)
+    this.resetar();
     this.findAll();
   }
 
@@ -40,5 +41,8 @@ export class ClientComponent implements OnInit {
     this.eventEmitterService.listAllClient();
   }
 
+  resetar(){
+    this.angForm.reset();
+  }
 
 }

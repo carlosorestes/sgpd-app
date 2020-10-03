@@ -6,7 +6,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductsService } from '../service/products.service';
-import { ClientsService } from '../service/clients.service';
+import { ClientsService } from './clients.service';
 import { ClientListComponent } from './client-list/client-list.component';
 import { EventEmitterService } from '../service/event-emitter.service';
 import { BasicAuthHtppInterceptorServiceService } from '../service/basic-auth-htpp-interceptor-service.service';

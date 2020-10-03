@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 
-import { ClientsService } from 'src/app/service/clients.service';
 import { Client } from 'src/app/client/client';
 import { Vehicle } from 'src/app/model/vehicle.model';
-import { DispatchService } from 'src/app/service/dispatch.service';
+import { DispatchService } from 'src/app/dispatch/dispatch.service';
+import { Dispatch } from 'src/app/model/dispatch';
+import { ActivatedRoute } from '@angular/router';
+import { ClientsService } from 'src/app/client/clients.service';
 
 @Component({
   selector: 'app-dispatch',
@@ -17,14 +19,22 @@ export class DispatchComponent implements OnInit {
   formVehicle: FormGroup;
   vehicles = [];
   vehiclesAdd = [];
+  dispatch: Dispatch;
+
   constructor(private fb: FormBuilder,
               private fbVehicle: FormBuilder,
               private clientService: ClientsService,
-              private dispatchService: DispatchService) { 
+              private dispatchService: DispatchService,
+              private activatedRoute: ActivatedRoute) { 
     
   }
 
   ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(params => {
+      console.log('XXXXXXXX');
+      console.log(params);
+    });
+
     this.createForm();
     this.vehicles = this.dispatchService.getVehicle();
   }

@@ -112,7 +112,7 @@
                                 <td>{{dispatch.dataEntradaOrgao | date: 'dd/MM/yyyy hh:mm'}}</td>
                                 <td>{{dispatch.dataEntrega | date: 'dd/MM/yyyy hh:mm'}}</td>
                                 <td><button class="btn btn-danger">Delete</button></td>
-                                <td><button class="btn btn-primary">Update</button></td>
+                                <td><button class="btn btn-primary" (click)="update(dispatch)">Update</button></td>
                             </tr>
                         </tbody>
                     </table>

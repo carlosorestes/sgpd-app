@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClientService } from '../service/http-client.service';
 import { User } from '../model/user';
 import { Router, NavigationExtras } from '@angular/router';
 import { EventEmitterService } from '../service/event-emitter.service';
+import { HttpClientService } from '../add-user/http-client.service';
 
 @Component({
   selector: 'app-user',

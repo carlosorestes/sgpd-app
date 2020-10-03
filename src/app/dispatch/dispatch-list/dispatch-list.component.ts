@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { DispatchService } from 'src/app/service/dispatch.service';
+import { DispatchService } from 'src/app/dispatch/dispatch.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Dispatch } from 'src/app/model/dispatch';
 import { Client } from 'src/app/client/client';
 import { User } from 'src/app/model/user';
-import { ClientsService } from 'src/app/service/clients.service';
-import { HttpClientService } from 'src/app/service/http-client.service';
 import { Observable, empty, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { NavigationExtras, Router } from '@angular/router';
+import { AlertModalService } from 'src/app/shared/alert-modal.service';
+import { HttpClientService } from 'src/app/add-user/http-client.service';
 
 @Component({
   selector: 'app-dispatch-list',
@@ -27,7 +28,9 @@ export class DispatchListComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private dispatchService: DispatchService,
-              private userService: HttpClientService) { }
+              private userService: HttpClientService,
+              private alertService: AlertModalService,
+              private router: Router) { }
 
   ngOnInit() {
     this.loadingData();
@@ -68,7 +71,7 @@ export class DispatchListComponent implements OnInit {
     this.dispatchs$ = this.dispatchService.list()
     .pipe(
       catchError(error => {
-        console.error(error);
+        this.alertService.showAlertSuccess('Cadastro Realizado com sucesso');
         this.error$.next(true);
         return empty();
       })
@@ -80,5 +83,13 @@ export class DispatchListComponent implements OnInit {
     // carregar dados tipos de veiculos
     this.vehicles = this.dispatchService.getVehicle();
   }
+
+  update(dispatch: Dispatch): void {
+    let navigationExtras: NavigationExtras = {
+      queryParams: dispatch
+    }
+
+    this.router.navigate(['dispatch'], navigationExtras);
+  };
 
 }

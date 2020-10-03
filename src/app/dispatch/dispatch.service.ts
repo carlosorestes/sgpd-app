@@ -5,6 +5,9 @@ import { Dispatch } from '../model/dispatch';
 import { tap, delay } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { AlertModalComponent } from '../shared/alert-modal/alert-modal.component';
+import { AlertModalService } from '../shared/alert-modal.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +16,15 @@ export class DispatchService {
 
   private readonly API = `${environment.API}orders`;
 
+  bsModalRef: BsModalRef
+
   constructor(private httpClient:HttpClient,
-              private router:Router) { }
+              private router:Router,
+              private alertService: AlertModalService) { }
 
   save(dispacher) {
     console.log(dispacher);
     // return this.httpClient.post<Dispatch>(this.API, dispacher);
-    
     this.httpClient.post(this.API, dispacher)
         .subscribe(res => this.router.navigate(['/app-dispatch-list']));
   }
@@ -57,5 +62,4 @@ export class DispatchService {
       { _id: '26', nome: 'Motor-Casa' },
     ]
   }
-
 }
