@@ -51,8 +51,8 @@
             <div class="text-right">
                 <div class="btn-group mr-2" role="group">
                     <button type="button" class="btn btn-success" 
-                            (click) = "addClient(nome.value, cpf.value, telefone1.value, telefone2.value)" 
-                            [disabled]="angForm.pristine || angForm.invalid">
+                            (click) = "addClient()" 
+                            [disabled]="angForm.invalid ">
                             Save
                     </button>
                   </div>

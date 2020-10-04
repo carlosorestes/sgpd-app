@@ -19,5 +19,14 @@
       </tr>
     </tbody>
   </table>
-
 </div>
+
+<ul class="pagination justify-content-center">
+  <li class="page-item"><a (click)="previousClick()" class="page-link"><<<</a></li>
+  <li *ngFor='let index of pageIndexes' class="page-item" [ngClass]="active(index)">
+          <a (click)="getPaginationWithIndex(index)" class="page-link">
+            {{index + 1}}
+          </a>
+  </li>
+  <li class="page-item"><a (click)="nextClick()" class="page-link">>>></a></li>
+</ul>

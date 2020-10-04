@@ -7,6 +7,9 @@ import { ClientsService } from '../clients.service';
 import { Observable, Subject, empty } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AlertModalService } from 'src/app/shared/alert-modal.service';
+import { Message } from '../message';
+
+const pageSize:number = 4;
 
 @Component({
   selector: 'app-client-list',
@@ -19,6 +22,12 @@ export class ClientListComponent implements OnInit {
   clients: Client[];
   error$ = new Subject<boolean>();
 
+  currentSelectedPage:number = 0;
+  totalPages: number = 0;
+  customers: Array<Client> = [];
+  pageIndexes: Array<number> = [];
+
+
   constructor(private clientsService: ClientsService,
     private router: Router,
     private eventEmitterService: EventEmitterService,
@@ -29,10 +38,12 @@ export class ClientListComponent implements OnInit {
     if (this.eventEmitterService.subsVar == undefined) {
       this.eventEmitterService.subsVar = this.eventEmitterService.
         invokeFindAllClientFromClient.subscribe((name: string) => {
-          this.findAll();
+          // this.findAll();
+          this.getPage(0);
         });
     }
-    this.findAll();
+    // this.findAll();
+    this.getPage(0);
   }
 
   findAll() {
@@ -43,7 +54,6 @@ export class ClientListComponent implements OnInit {
         this.cdr.markForCheck();
       },
     );
-
   }
 
   delete(client: Client): void {
@@ -57,16 +67,55 @@ export class ClientListComponent implements OnInit {
         })
   };
 
-  updateUser(user: User): void {
+  update(client: Client): void {
     let navigationExtras: NavigationExtras = {
-      queryParams: user
+      queryParams: client,
+      skipLocationChange: true
     }
-
-    this.router.navigate(['user'], navigationExtras);
+    this.router.navigate(['client'], navigationExtras);
   };
 
   handleSuccessfulResponse(response) {
     this.clients = response;
+  }
+
+  getPage(page: number){
+    this.clientsService.getPageable(page, pageSize)
+            .subscribe(
+                (message: Message) => {
+                  this.clients = message['persons'];
+                  this.totalPages = message.totalPages;
+                  this.pageIndexes = Array(this.totalPages).fill(0).map((x,i)=>i);
+                  this.currentSelectedPage = message.pageNumber;
+                },
+                (error) => {
+                  console.log(error);
+                }
+            );
+  }
+
+  nextClick(){
+    if(this.currentSelectedPage < this.totalPages-1){
+      this.getPage(++this.currentSelectedPage);
+    }  
+  }
+
+  previousClick(){
+    if(this.currentSelectedPage > 0){
+      this.getPage(--this.currentSelectedPage);
+    }  
+  }
+
+  getPaginationWithIndex(index: number) {
+    this.getPage(index);
+  }
+
+  active(index: number) {
+    if(this.currentSelectedPage == index ){
+      return {
+        active: true
+      };
+    }
   }
 
 }
