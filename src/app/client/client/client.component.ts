@@ -32,9 +32,7 @@ export class ClientComponent implements OnInit {
                                   telefone1: params['telefone1'],
                                   telefone2: params['telefone2'],
                                 });
-         
     });
-    
   }
 
   createForm() {

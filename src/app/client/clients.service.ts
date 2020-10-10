@@ -46,9 +46,8 @@ export class ClientsService {
   }
 
   getPageable(pageNumber: number, 
-              pageSize: number): Observable<Message>{
-
-                // Initialize Params Object
+              pageSize: number): Observable<Message>{         
+    // Initialize Params Object
     let params = new HttpParams();
 
     // Begin assigning parameters

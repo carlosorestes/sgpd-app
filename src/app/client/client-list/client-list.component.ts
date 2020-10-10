@@ -8,6 +8,7 @@ import { Observable, Subject, empty } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AlertModalService } from 'src/app/shared/alert-modal.service';
 import { Message } from '../message';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 const pageSize:number = 4;
 
@@ -19,6 +20,7 @@ const pageSize:number = 4;
 })
 export class ClientListComponent implements OnInit {
 
+  angForm: FormGroup;
   clients: Client[];
   error$ = new Subject<boolean>();
 
@@ -28,26 +30,43 @@ export class ClientListComponent implements OnInit {
   pageIndexes: Array<number> = [];
 
 
-  constructor(private clientsService: ClientsService,
+  constructor(private fb: FormBuilder,
+    private clientsService: ClientsService,
     private router: Router,
     private eventEmitterService: EventEmitterService,
     private alertService: AlertModalService,
-    private cdr: ChangeDetectorRef) { }
+    private cdr: ChangeDetectorRef) { 
+      this.createForm();
+    }
 
   ngOnInit() {
     if (this.eventEmitterService.subsVar == undefined) {
       this.eventEmitterService.subsVar = this.eventEmitterService.
         invokeFindAllClientFromClient.subscribe((name: string) => {
-          // this.findAll();
           this.getPage(0);
         });
     }
-    // this.findAll();
     this.getPage(0);
   }
 
+  createForm() {
+    this.angForm = this.fb.group({
+      cpf: ['']
+    });
+  }
+
+  findByCpf(){
+    if(this.angForm.value['cpf']){
+      this.clientsService.findByCpf(this.angForm.value['cpf']).subscribe(
+        (message: Message) => {
+          this.clients = [message];
+        });
+    } else {
+      this.getPage(0);
+    }
+  }
+
   findAll() {
-    console.log('findAll');
     this.clientsService.getClients().subscribe(
       response => {
         this.handleSuccessfulResponse(response);
@@ -60,6 +79,7 @@ export class ClientListComponent implements OnInit {
     this.clientsService.delete(client)
       .subscribe(data => {
         this.clients = this.clients.filter(u => u !== client);
+        this.getPage(0);
         this.alertService.showAlertSuccess('Cliente excluido com sucesso');
       },
         error => {

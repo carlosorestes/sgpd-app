@@ -1,9 +1,6 @@
 <div class="row">
     <div *ngIf="angForm.controls['cpf'].invalid && (angForm.controls['cpf'].dirty || angForm.controls['cpf'].touched)"
         class="alert alert-danger">
-        <div *ngIf="angForm.controls['cpf'].errors.required">
-            CPF é Obrigatório.
-        </div>
     </div>
 </div>
 <fieldset class="border p-2">
