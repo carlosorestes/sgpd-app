@@ -9,7 +9,7 @@
         </div>
         <div class="form-group col-md-2">
           <label for="inputState">Telefone:</label>
-          <input type="text" class="form-control"  formControlName="phone" #phone>
+          <input type="text" class="form-control" mask="(00) 00000-0000" formControlName="phone" #phone>
         </div>
         <div class="form-group col-md-4">
             <label for="inputState">Usuario:</label>
@@ -51,7 +51,7 @@
       <tbody>
         <tr *ngFor="let user of users">
           <td>{{user.nome}}</td>
-          <td>{{user.phone}}</td>
+          <td>{{user.phone | mask: '(00) 00000-0000'}}</td>
           <td>{{user.user}}</td>
           <td><button class="btn btn-danger" (click)="deleteUser(user)"> Delete</button></td>
           <td><button class="btn btn-primary" (click)="updateUser(user)"> Update User</button></td>

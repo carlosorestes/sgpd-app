@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DispatchListComponent } from './dispatch-list/dispatch-list.component';
 import { UtilsModule } from '../utils/main-pipe/utils.module';
 import { DispatchService } from './dispatch.service';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [DispatchComponent, DispatchListComponent],
@@ -18,7 +19,8 @@ import { DispatchService } from './dispatch.service';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    UtilsModule
+    UtilsModule,
+    NgxMaskModule.forRoot()
   ],providers: [
     DispatchService
   ]

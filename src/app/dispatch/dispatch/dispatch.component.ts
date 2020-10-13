@@ -69,7 +69,7 @@ export class DispatchComponent implements OnInit {
    }
 
   findClient(cpf){
-    this.clientService.findByCpf(cpf).subscribe((data: any[])=>{
+    this.clientService.findByCpf(cpf.replace(/[.,-]/g, '')).subscribe((data: any[])=>{
         this.angForm.get('nome').setValue(data['nome']);
         this.angForm.get('despachante').enable();
         this.angForm.get('despachante').setValue(sessionStorage.getItem('username'));

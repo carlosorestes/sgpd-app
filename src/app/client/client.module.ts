@@ -10,6 +10,7 @@ import { ClientsService } from './clients.service';
 import { ClientListComponent } from './client-list/client-list.component';
 import { EventEmitterService } from '../service/event-emitter.service';
 import { BasicAuthHtppInterceptorServiceService } from '../service/basic-auth-htpp-interceptor-service.service';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { BasicAuthHtppInterceptorServiceService } from '../service/basic-auth-ht
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [
     ProductsService,

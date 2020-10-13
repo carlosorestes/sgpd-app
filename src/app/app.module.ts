@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgxMaskModule, IConfig, MaskPipe } from 'ngx-mask';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +23,6 @@ import { DispatchModule } from './dispatch/dispatch.module';
 import { VehicleComponent } from './vehicle/vehicle.component';
 import { UtilsModule } from './utils/main-pipe/utils.module';
 import { SharedModule } from './shared/shared.module';
-
 
 @NgModule({
   declarations: [
@@ -45,7 +45,8 @@ import { SharedModule } from './shared/shared.module';
     DispatchModule,
     UtilsModule,
     ModalModule.forRoot(),
-    SharedModule
+    SharedModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [
     EventEmitterService,

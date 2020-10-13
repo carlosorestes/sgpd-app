@@ -4,7 +4,7 @@
         <div class="col-md-4">
         </div>
         <div class="col-md-4">
-            <input type="text" class="form-control mb-6" placeholder="CPF" formControlName="cpf" #cpf>
+            <input type="text" class="form-control mb-6" mask="000.000.000-00" placeholder="CPF" formControlName="cpf" #cpf>
         </div>
         <div class="col-md-4">
             <button class="btn btn-primary" (click)="findByCpf()">Consultar</button>
@@ -28,9 +28,9 @@
       <tbody>
         <tr *ngFor="let client of clients">
           <td>{{client.nome}}</td>
-          <td>{{client.cpf}}</td>
-          <td>{{client.telefone1}}</td>
-          <td>{{client.telefone2}}</td>
+          <td>{{client.cpf | mask:'000.000.000-00'}}</td>
+          <td>{{client.telefone1 | mask:'(00) 00000-0000'}}</td>
+          <td>{{client.telefone2 | mask:'(00) 00000-0000'}}</td>
           <td><button class="btn btn-danger" (click)="delete(client)">Excluir</button></td>
           <td><button class="btn btn-primary" (click)="update(client)">Atualizar</button></td>
         </tr>
