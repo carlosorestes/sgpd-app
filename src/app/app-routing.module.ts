@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UserComponent } from './user/user.component';
-import { AddUserComponent } from './add-user/add-user.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthGaurdService } from './service/auth-gaurd.service';
@@ -11,7 +10,7 @@ import { DispatchListComponent } from './dispatch/dispatch-list/dispatch-list.co
 
 const routes: Routes = [
   { path:'', component: UserComponent, canActivate:[AuthGaurdService]},
-  { path:'user', component: AddUserComponent, canActivate:[AuthGaurdService]},
+  { path:'user', component: UserComponent, canActivate:[AuthGaurdService]},
   { path:'client', component: ClientComponent, canActivate:[AuthGaurdService]},
   { path:'dispatch', component: DispatchComponent, canActivate:[AuthGaurdService]},
   { path:'app-dispatch-list', component: DispatchListComponent, canActivate:[AuthGaurdService]},

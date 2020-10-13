@@ -6,9 +6,9 @@
             <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/user" class="nav-link">Usuario</a></li>
             <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/client" class="nav-link">Cliente</a></li>
             <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/dispatch" class="nav-link">Despacho</a></li>
-            <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/app-dispatch-list" class="nav-link">[Despachos Remetidos]</a></li>
-            <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
-            <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">LogOut</a></li>
+            <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/app-dispatch-list" class="nav-link">Remetidos</a></li>
+            <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Entrar</a></li>
+            <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">Sair</a></li>
         </ul>
     </nav>
 </header>

@@ -58,9 +58,19 @@ export class ClientListComponent implements OnInit {
   findByCpf(){
     if(this.angForm.value['cpf']){
       this.clientsService.findByCpf(this.angForm.value['cpf']).subscribe(
-        (message: Message) => {
-          this.clients = [message];
-        });
+        res => {
+          if(res == null){
+            this.alertService.showAlertDanger('Cliente não encontrado');
+            this.angForm.setValue({cpf: null});
+          } else {
+            this.clients = [res];
+          }
+        },
+        error => {
+          this.alertService.showAlertDanger('Erro ao excluir Cliente');
+          console.log(error);
+        },
+        () => console.debug('Observable Complete'));
     } else {
       this.getPage(0);
     }
@@ -68,8 +78,8 @@ export class ClientListComponent implements OnInit {
 
   findAll() {
     this.clientsService.getClients().subscribe(
-      response => {
-        this.handleSuccessfulResponse(response);
+      res => {
+        this.handleSuccessfulResponse(res);
         this.cdr.markForCheck();
       },
     );
@@ -84,7 +94,8 @@ export class ClientListComponent implements OnInit {
       },
         error => {
           this.alertService.showAlertDanger('Erro ao excluir Cliente');
-        })
+        },
+        () => console.debug('Observable Complete'));
   };
 
   update(client: Client): void {
