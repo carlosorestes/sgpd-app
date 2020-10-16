@@ -31,7 +31,6 @@ export class DispatchComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
-      console.log('XXXXXXXX');
       console.log(params);
     });
 
@@ -61,6 +60,7 @@ export class DispatchComponent implements OnInit {
       placa:['', Validators.required],
       renavam:['', Validators.required]
     });
+
   }
   // this.orderForm.get('items')
    addVehicles(){
