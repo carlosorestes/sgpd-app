@@ -9,18 +9,22 @@ import { DispatchListComponent } from './dispatch-list/dispatch-list.component';
 import { UtilsModule } from '../utils/main-pipe/utils.module';
 import { DispatchService } from './dispatch.service';
 import { NgxMaskModule } from 'ngx-mask';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [DispatchComponent, DispatchListComponent],
   imports: [
     CommonModule,
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     UtilsModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    BsDatepickerModule.forRoot()
   ],providers: [
     DispatchService
   ]

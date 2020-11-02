@@ -1,0 +1,138 @@
+{
+    "veiculo": [
+        {
+            "anoFabricacao": 2007,
+            "anoModelo": 2008,
+            "cmc": 0,
+            "cmt": 0,
+            "tipoCarroceria": {
+                "codigo": "999",
+                "descricao": "NãO APLICAVEL"
+            },
+            "categoria": {
+                "descricao": "PARTICULAR"
+            },
+            "chassiSerie": "02331",
+            "cilindradas": 149,
+            "combustivel": {
+                "codigo": "02",
+                "descricao": "GASOLINA"
+            },
+            "cor": {
+                "codigo": "02",
+                "descricao": "AZUL"
+            },
+            "especie": {
+                "descricao": "PASSAGEIRO"
+            },
+            "indicadorAlarme": false,
+            "indicadorRouboFurto": false,
+            "lotacao": 2,
+            "marcaModelo": {
+                "codigo": "002807",
+                "descricao": "HONDA/CG 150 TITAN KS"
+            },
+            "municipioEmplacamento": {
+                "codigo": "5403",
+                "descricao": "UBERLANDIA"
+            },
+            "qtdEixos": 0,
+            "pbt": 0,
+            "potencia": 0,
+            "numeroIdentificacaoProprietario": "08059593609",
+            "situacao": "CIRCULACAO",
+            "tipoVeiculo": {
+                "codigo": "04",
+                "descricao": "MOTOCICLETA"
+            },
+            "ufJurisdicao": "MG",
+            "indicadorComunicacaoVenda": false,
+            "indicadorLeilao": false,
+            "indicadorMultaRenainf": false,
+            "indicadorPendenciaEmissao": false,
+            "indicadorRecall1": false,
+            "indicadorRecall2": false,
+            "indicadorRecall3": false,
+            "indicadorRecallMontadora": false,
+            "restricao1": {
+                "codigo": "03",
+                "descricao": "ALIENACAO FIDUCIARIA"
+            },
+            "restricao2": {
+                "codigo": "00",
+                "descricao": "SEM RESTRICAO"
+            },
+            "restricao3": {
+                "codigo": "00",
+                "descricao": "SEM RESTRICAO"
+            },
+            "restricao4": {
+                "codigo": "00",
+                "descricao": "SEM RESTRICAO"
+            },
+            "indicadorRestricaoRenajud": false,
+            "restricaoRfb": {
+                "indicador": "0",
+                "descricao": "INEXISTENTE"
+            },
+            "procedencia": "NACIONAL",
+            "indicadorOstentaPIV": false,
+            "tipoArrendatario": {
+                "codigo": "0",
+                "descricao": "INEXISTENTE"
+            },
+            "numeroCarroceria": "",
+            "remarcacaoChassi": {
+                "codigo": "2",
+                "descricao": "NORMAL"
+            },
+            "dataEmissaoCrv": "2007-12-26",
+            "dataUltimaAtualizacao": "2007-12-26",
+            "orgaoRfb": {
+                "codigo": "0000000",
+                "descricao": "INEXISTENTE"
+            },
+            "numeroEixoAuxiliar": "",
+            "numeroEixoTraseiro": "",
+            "naturezaFaturado": "JURIDICA",
+            "ufFaturado": "MG",
+            "naturezaImportador": "",
+            "descricaoDocImportador": "INEXISTENTE",
+            "paisTransferencia": {
+                "codigo": "00000",
+                "descricao": "INEXISTENTE"
+            },
+            "docProprietarioIndicado": {
+                "tipo": "0",
+                "descricao": "INEXISTENTE"
+            },
+            "tipoProprietario": {
+                "codigo": "1",
+                "descricao": "FISICA"
+            },
+            "nomeArrendatario": "",
+            "numeroIdentificacaoArrendatario": "",
+            "numeroCambio": "",
+            "chassi": "9C2KC08108R102331",
+            "numeroDeclaracaoImportacao": "",
+            "numeroIdFaturamento": "17618026000109",
+            "numeroIdImportador": "",
+            "numeroMotor": "KC08E18102331",
+            "placa": "HHL2627",
+            "possuidor": {
+                "nome": "CARLOS ORESTES F. MALAQUIAS",
+                "numeroDocumento": "08059593609",
+                "origem": "1"
+            },
+            "numeroDocProprietarioIndicado": "",
+            "nomeProprietario": "CARLOS ORESTES F. MALAQUIAS",
+            "registroAduaneiro": "",
+            "codigoRenavam": "00947753672",
+            "usuarioEhPossuidor": true,
+            "usuarioEhPrincipalCondutor": false,
+            "usuarioFoiPrincipalCondutor": false,
+            "listaCsv": [],
+            "permiteBaixarCrvlDigital": true
+        }
+    ]
+}

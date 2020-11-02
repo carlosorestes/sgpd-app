@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxMaskModule, IConfig, MaskPipe } from 'ngx-mask';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,6 +39,7 @@ import { SharedModule } from './shared/shared.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
@@ -46,7 +49,8 @@ import { SharedModule } from './shared/shared.module';
     UtilsModule,
     ModalModule.forRoot(),
     SharedModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    BsDatepickerModule.forRoot()
   ],
   providers: [
     EventEmitterService,
