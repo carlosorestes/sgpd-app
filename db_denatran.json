@@ -133,6 +133,140 @@
             "usuarioFoiPrincipalCondutor": false,
             "listaCsv": [],
             "permiteBaixarCrvlDigital": true
+        },
+        {
+            "anoFabricacao": 2005,
+            "anoModelo": 2005,
+            "cmc": 0.00,
+            "cmt": 2.30,
+            "tipoCarroceria": {
+                "codigo": "999",
+                "descricao": "NãO APLICAVEL"
+            },
+            "categoria": {
+                "descricao": "PARTICULAR"
+            },
+            "chassiSerie": "75787",
+            "cilindradas": 1000,
+            "combustivel": {
+                "codigo": "02",
+                "descricao": "GASOLINA"
+            },
+            "cor": {
+                "codigo": "10",
+                "descricao": "PRATA"
+            },
+            "especie": {
+                "descricao": "PASSAGEIRO"
+            },
+            "indicadorAlarme": false,
+            "indicadorRouboFurto": false,
+            "lotacao": 5,
+            "marcaModelo": {
+                "codigo": "152449",
+                "descricao": "FIAT/PALIO FIRE"
+            },
+            "municipioEmplacamento": {
+                "codigo": "5403",
+                "descricao": "UBERLANDIA"
+            },
+            "qtdEixos": 0,
+            "pbt": 0.00,
+            "potencia": 65,
+            "numeroIdentificacaoProprietario": "51542820600",
+            "situacao": "CIRCULACAO",
+            "tipoVeiculo": {
+                "codigo": "06",
+                "descricao": "AUTOMOVEL"
+            },
+            "ufJurisdicao": "MG",
+            "indicadorComunicacaoVenda": false,
+            "indicadorLeilao": false,
+            "indicadorMultaRenainf": false,
+            "indicadorPendenciaEmissao": false,
+            "indicadorRecall1": false,
+            "indicadorRecall2": false,
+            "indicadorRecall3": false,
+            "indicadorRecallMontadora": false,
+            "restricao1": {
+                "codigo": "03",
+                "descricao": "ALIENACAO FIDUCIARIA"
+            },
+            "restricao2": {
+                "codigo": "00",
+                "descricao": "SEM RESTRICAO"
+            },
+            "restricao3": {
+                "codigo": "00",
+                "descricao": "SEM RESTRICAO"
+            },
+            "restricao4": {
+                "codigo": "00",
+                "descricao": "SEM RESTRICAO"
+            },
+            "indicadorRestricaoRenajud": false,
+            "restricaoRfb": {
+                "indicador": "0",
+                "descricao": "INEXISTENTE"
+            },
+            "procedencia": "NACIONAL",
+            "indicadorOstentaPIV": false,
+            "tipoArrendatario": {
+                "codigo": "0",
+                "descricao": "INEXISTENTE"
+            },
+            "numeroCarroceria": "71552400",
+            "remarcacaoChassi": {
+                "codigo": "2",
+                "descricao": "NORMAL"
+            },
+            "dataEmissaoCrv": "2013-08-23",
+            "dataUltimaAtualizacao": "2013-08-23",
+            "orgaoRfb": {
+                "codigo": "0000000",
+                "descricao": "INEXISTENTE"
+            },
+            "numeroEixoAuxiliar": "",
+            "numeroEixoTraseiro": "",
+            "naturezaFaturado": "JURIDICA",
+            "ufFaturado": "MG",
+            "naturezaImportador": "",
+            "descricaoDocImportador": "INEXISTENTE",
+            "paisTransferencia": {
+                "codigo": "00000",
+                "descricao": "INEXISTENTE"
+            },
+            "docProprietarioIndicado": {
+                "tipo": "0",
+                "descricao": "INEXISTENTE"
+            },
+            "tipoProprietario": {
+                "codigo": "1",
+                "descricao": "FISICA"
+            },
+            "nomeArrendatario": "",
+            "numeroIdentificacaoArrendatario": "",
+            "numeroCambio": "",
+            "chassi": "9BD17146752575787",
+            "numeroDeclaracaoImportacao": "",
+            "numeroIdFaturamento": "16701716000156",
+            "numeroIdImportador": "",
+            "numeroMotor": "178F1011*6327593*",
+            "placa": "HCC3493",
+            "possuidor": {
+                "nome": "NEUSA FRANCISCO MALAQUIAS",
+                "numeroDocumento": "51542820600",
+                "origem": "1"
+            },
+            "numeroDocProprietarioIndicado": "",
+            "nomeProprietario": "NEUSA FRANCISCO MALAQUIAS",
+            "registroAduaneiro": "",
+            "codigoRenavam": "00848561066",
+            "usuarioEhPossuidor": false,
+            "usuarioEhPrincipalCondutor": false,
+            "usuarioFoiPrincipalCondutor": false,
+            "listaCsv": [],
+            "permiteBaixarCrvlDigital": false
         }
     ]
 }

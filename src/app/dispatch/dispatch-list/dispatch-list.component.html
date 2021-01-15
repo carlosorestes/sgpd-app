@@ -81,7 +81,7 @@
                             </button>
                         </div>
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-danger">Cancel</button>
+                            <button type="button" class="btn btn-danger">Cancelar</button>
                         </div>
                     </div>
                 </div>
@@ -98,6 +98,7 @@
                                 <th>Data Entrada</th>
                                 <th>Data Entrada Orgao</th>
                                 <th>Data Entrega</th>
+                                <th>Status</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -111,8 +112,9 @@
                                 <td>{{dispatch.dataCriacao | date: 'dd/MM/yyyy hh:mm'}}</td>
                                 <td>{{dispatch.dataEntradaOrgao | date: 'dd/MM/yyyy hh:mm'}}</td>
                                 <td>{{dispatch.dataEntrega | date: 'dd/MM/yyyy hh:mm'}}</td>
-                                <td><button class="btn btn-danger">Delete</button></td>
-                                <td><button class="btn btn-primary" (click)="update(dispatch)">Update</button></td>
+                                <td>{{dispatch.status}}</td>
+                                <td><button class="btn btn-danger">Excluir</button></td>
+                                <td><button class="btn btn-primary" (click)="update(dispatch)">Editar</button></td>
                             </tr>
                         </tbody>
                     </table>
