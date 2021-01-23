@@ -86,7 +86,10 @@ export class DispatchListComponent implements OnInit {
 
   update(dispatch: Dispatch): void {
     let navigationExtras: NavigationExtras = {
-      queryParams: dispatch
+      queryParams: {
+        dispatch_id: dispatch.id,
+      },
+      skipLocationChange: true
     }
 
     this.router.navigate(['dispatch'], navigationExtras);

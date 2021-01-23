@@ -32,7 +32,7 @@
                         <th scope="col">
                             <label>Tipo:</label>
                             <select class="selectpicker" data-live-search="true" class="form-control form-control-sm"
-                                formControlName="tipo" #tipo id="tipo">
+                                formControlName="tipoVeiculo" #tipoVeiculo id="tipoVeiculo">
                                 <option hidden disabled selected value> -- </option>
                                 <option *ngFor="let vehicle of vehicles; let i = index" [value]="vehicles[i]._id">
                                     {{vehicles[i].nome}}
@@ -80,6 +80,9 @@
                             #renavam id="renavam" />
                         </th>
                         <th scope="col">
+                            <span class="label label-default">Status</span>
+                        </th>
+                        <th scope="col">
                             <button type="submit" (click)="addVehicles()" class="btn btn-primary" [disabled]="formVehicle.invalid">+</button>
                         </th>
                         <th scope="col">
@@ -89,12 +92,15 @@
                 <tbody align="center">
                     <tr *ngFor="let vehicle of vehiclesAdd;let indexOfelement=index;">
                         <th scope="row">{{indexOfelement}}</th>
-                        <td>{{vehicles | filterList:vehicle.tipo}}</td>
+                        <td>{{vehicles | filterList:vehicle.tipoVeiculo}}</td>
                         <td>{{vehicle.ano}}</td>
                         <td>{{vehicle.modelo}}</td>
                         <td>{{vehicle.cor}}</td>
-                        <td>{{vehicle.placa  | uppercase}}</td>
-                        <td>{{vehicle.renavam  | uppercase}}</td>
+                        <td>{{vehicle.placa | uppercase}}</td>
+                        <td>{{vehicle.renavam | uppercase}}</td>
+                        <td>
+                            <span class="label label-default">{{vehicle.status | uppercase}}</span>
+                        </td>
                         <td>
                             <button class="btn btn-primary" (click)="editVeicle(indexOfelement)">Editar</button>
                         </td>
@@ -133,22 +139,22 @@
             <div class="row">
                 <div class="form-group col-md-3">
                     <label>Data Entrada:</label>
-                    <input type="date" class="form-control form-control-sm datepicker" data-date-format="dd/mm/yyyy"
+                    <input type="date" class="form-control form-control-sm datepicker" 
                         formControlName="dtEntrada" #dtEntrada />
                 </div>
                 <div class="form-group col-md-3">
                     <label>Data Entrada DTRAN:</label>
-                    <input type="date" class="form-control form-control-sm datepicker" data-date-format="mm/dd/yyyy"
+                    <input type="date" class="form-control form-control-sm datepicker" data-date-format="dd/mm/yyyy"
                         formControlName="dtEntradaOrg" #dtEntradaOrg />
                 </div>
                 <div class="form-group col-md-3">
                     <label>Data Pronto:</label>
-                    <input type="date" class="form-control form-control-sm datepicker" data-date-format="mm/dd/yyyy"
+                    <input type="date" class="form-control form-control-sm datepicker" data-date-format="dd/mm/yyyy"
                         formControlName="dtPronto" #dtPronto />
                 </div>
                 <div class="form-group col-md-3">
                     <label>Data Entega:</label>
-                    <input type="date" class="form-control form-control-sm datepicker" data-date-format="mm/dd/yyyy"
+                    <input type="date" class="form-control form-control-sm datepicker" data-date-format="dd/mm/yyyy"
                         formControlName="dtEntrega" #dtEntrega />
                 </div>
             </div>

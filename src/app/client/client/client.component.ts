@@ -11,12 +11,13 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './client.component.html',
   styleUrls: ['./client.component.css'],
 })
+
 export class ClientComponent implements OnInit {
-  
 
   angForm: FormGroup;
   client: Client;
-  constructor(private fb: FormBuilder, 
+
+  constructor(private fb: FormBuilder,
               private clientService: ClientsService,
               private eventEmitterService: EventEmitterService,
               private activatedRoute: ActivatedRoute) {
@@ -25,22 +26,22 @@ export class ClientComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
-
-         this.angForm.patchValue({id: params['id'], 
-                                  nome: params['nome'],
-                                  cpf: params['cpf'],
-                                  telefone1: params['telefone1'],
-                                  telefone2: params['telefone2'],
-                                });
+      this.angForm.patchValue({
+        id: params['id'],
+        nome: params['nome'],
+        cpf: params['cpf'],
+        telefone1: params['telefone1'],
+        telefone2: params['telefone2'],
+      });
     });
   }
 
   createForm() {
     this.angForm = this.fb.group({
       id: [''],
-      nome: ['', Validators.required ],
-      cpf: ['', Validators.required ],
-      telefone1: ['', Validators.required ],
+      nome: ['', Validators.required],
+      cpf: ['', Validators.required],
+      telefone1: ['', Validators.required],
       telefone2: ['']
     });
   }
@@ -58,11 +59,11 @@ export class ClientComponent implements OnInit {
     this.findAll();
   }
 
-  findAll(){
+  findAll() {
     this.eventEmitterService.listAllClient();
   }
 
-  resetar(){
+  resetar() {
     this.angForm.reset();
   }
 
