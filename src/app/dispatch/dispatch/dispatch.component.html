@@ -139,23 +139,27 @@
             <div class="row">
                 <div class="form-group col-md-3">
                     <label>Data Entrada:</label>
-                    <input type="date" class="form-control form-control-sm datepicker" 
-                        formControlName="dtEntrada" #dtEntrada />
+                    <input type="text" class="form-control form-control-sm" 
+                        formControlName="dtEntrada" #dtEntrada
+                        bsDatepicker [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MM-YYYY' }" />
                 </div>
                 <div class="form-group col-md-3">
                     <label>Data Entrada DTRAN:</label>
-                    <input type="date" class="form-control form-control-sm datepicker" data-date-format="dd/mm/yyyy"
-                        formControlName="dtEntradaOrg" #dtEntradaOrg />
+                    <input type="text" class="form-control form-control-sm"
+                        formControlName="dtEntradaOrg" #dtEntradaOrg
+                        bsDatepicker [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MM-YYYY' }" />
                 </div>
                 <div class="form-group col-md-3">
                     <label>Data Pronto:</label>
-                    <input type="date" class="form-control form-control-sm datepicker" data-date-format="dd/mm/yyyy"
-                        formControlName="dtPronto" #dtPronto />
+                    <input type="text" class="form-control form-control-sm" 
+                        formControlName="dtPronto" #dtPronto 
+                        bsDatepicker [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MM-YYYY' }"/>
                 </div>
                 <div class="form-group col-md-3">
                     <label>Data Entega:</label>
-                    <input type="date" class="form-control form-control-sm datepicker" data-date-format="dd/mm/yyyy"
-                        formControlName="dtEntrega" #dtEntrega />
+                    <input type="text" class="form-control form-control-sm" 
+                        formControlName="dtEntrega" #dtEntrega
+                        bsDatepicker [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MM-YYYY' }" />
                 </div>
             </div>
             <div class="row">

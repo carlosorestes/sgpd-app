@@ -7,6 +7,7 @@ import { Dispatch } from 'src/app/model/dispatch';
 import { ActivatedRoute } from '@angular/router';
 import { ClientsService } from 'src/app/client/clients.service';
 import { formatDate, DatePipe } from '@angular/common';
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-dispatch',
@@ -22,6 +23,7 @@ export class DispatchComponent implements OnInit {
   vehiclesAdd = [];
   dispatch: Dispatch;
   nowDate = new Date();
+  model: NgbDateStruct;
 
   constructor(private fb: FormBuilder,
     private fbVehicle: FormBuilder,
@@ -43,7 +45,7 @@ export class DispatchComponent implements OnInit {
               cpf: response['person']['cpf'],
               despachante: response['user']['nome'],
               indicacao: response['recommendation'],
-              dtEntrada: formatDate(response['dataCriacao'], 'yyyy-MM-dd', 'en-US'),
+              dtEntrada: formatDate(response['dataCriacao'], 'dd-MM-YYYY', 'pt-BR'),
               dtEntradaOrg: formatDate(response['dataEntradaOrgao'], 'yyyy-MM-dd', 'en-US'),
               dtPronto: formatDate(response['dataPronto'], 'yyyy-MM-dd', 'en-US'),
               dtEntrega: formatDate(response['dataEntrega'], 'yyyy-MM-dd', 'en-US'),
@@ -62,7 +64,7 @@ export class DispatchComponent implements OnInit {
       cpf: ['', Validators.required],
       despachante: ['', Validators.required],
       indicacao: ['', Validators.required],
-      dtEntrada: [this.datePipe.transform(this.nowDate, 'yyyy-MM-dd'), Validators.required],
+      dtEntrada: [this.nowDate, Validators.required],
       dtEntradaOrg: [''],
       dtPronto: [''],
       dtEntrega: [''],
