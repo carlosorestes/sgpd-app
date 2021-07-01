@@ -12,9 +12,10 @@ import { NgxMaskModule } from 'ngx-mask';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddComplementVehicleModalComponent } from './add-complement-vehicle-modal/add-complement-vehicle-modal.component';
 
 @NgModule({
-  declarations: [DispatchComponent, DispatchListComponent],
+  declarations: [DispatchComponent, DispatchListComponent, AddComplementVehicleModalComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -29,6 +30,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule
   ],providers: [
     DispatchService
+  ],
+  entryComponents:[
+    AddComplementVehicleModalComponent
   ]
 })
 export class DispatchModule { }

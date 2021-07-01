@@ -1,0 +1,22 @@
+<div class="modal-body">
+    <form [formGroup]="complementform" novalidate>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Observações: {{renavam}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <textarea class="form-control form-control-sm" 
+                      rows="5" 
+                      style="text-transform: uppercase"
+                      placeholder="Observação Despacho" 
+                      formControlName="obs" #obs>
+            </textarea>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-success" (click)="addComplement(complementform)">Adicionar</button>
+        </div>
+    </form>
+</div>

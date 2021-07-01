@@ -68,9 +68,9 @@
                                 class="form-control form-control-sm text-uppercase" formControlName="valor" #valor
                                 id="valor" />
                         </th>
-                        <th scope="col">
+                        <!-- <th scope="col">
                             <span class="label label-default">Status</span>
-                        </th>
+                        </th> -->
                         <th scope="col">
                             <button type="submit" (click)="addVehicles()" class="btn btn-primary"
                                 [disabled]="formVehicle.invalid">+</button>
@@ -89,9 +89,9 @@
                         <td>{{vehicle.placa | uppercase}}</td>
                         <td>{{vehicle.renavam | uppercase}}</td>
                         <td>{{vehicle.valor}}</td>
-                        <td>{{vehicle.status}}</td>
+                        <!-- <td>{{vehicle.status}}</td> -->
                         <td>
-                            <span class="label label-default">{{vehicle.status | uppercase}}</span>
+                            <button class="btn btn-danger" (click)="addComplement(vehicle)">!</button>
                         </td>
                         <td>
                             <button class="btn btn-primary" (click)="editVeicle(indexOfelement)">Editar</button>
@@ -158,10 +158,26 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-12">
-                    <label>Observação:</label>
-                    <textarea class="form-control form-control-sm" rows="3" style="text-transform: uppercase"
-                        placeholder="Observação Despacho" formControlName="obs" #obs>
-                    </textarea>
+                    <label>Observações:</label>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead align="left">
+                                <tr>
+                                    <th scope="col">RENAVAM</th>
+                                    <th scope="col">Data</th>
+                                    <th scope="col">Observação</th>
+                                </tr>
+                            </thead>
+                            <tbody align="left">
+                                    <tr *ngFor="let complement of vehiclesComplement;let indexOfelement=index;">
+                                        <!-- <th scope="row">{{indexOfelement}}</th> -->
+                                        <td scope="row">{{complement.renavam}}</td>
+                                        <td scope="row">{{complement.dtInput}}</td>
+                                        <td scope="row">{{complement.obs}}</td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="row">

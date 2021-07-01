@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 
 import { Vehicle } from 'src/app/model/vehicle.model';
@@ -7,7 +7,9 @@ import { Dispatch } from 'src/app/model/dispatch';
 import { ActivatedRoute } from '@angular/router';
 import { ClientsService } from 'src/app/client/clients.service';
 import { formatDate, DatePipe } from '@angular/common';
-import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { AddComplementVehicleModalComponent } from '../add-complement-vehicle-modal/add-complement-vehicle-modal.component';
 
 @Component({
   selector: 'app-dispatch',
@@ -18,10 +20,13 @@ import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 export class DispatchComponent implements OnInit {
 
   angForm: FormGroup;
+  modalRef: BsModalRef;
   formVehicle: FormGroup;
+  formComplementVehicle: FormGroup;
   vehicles = [];
   vehiclesAdd = [];
   vehiclesDel = [];
+  vehiclesComplement = [];
   dispatch: Dispatch;
   nowDate = new Date();
   model: NgbDateStruct;
@@ -29,10 +34,12 @@ export class DispatchComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private fbVehicle: FormBuilder,
+    private fbcomplement: FormBuilder,
     private clientService: ClientsService,
     private dispatchService: DispatchService,
     private activatedRoute: ActivatedRoute,
-    private datePipe: DatePipe) {
+    private datePipe: DatePipe,
+    private modalService: BsModalService) {
     this.createForm();
   }
 
@@ -40,7 +47,7 @@ export class DispatchComponent implements OnInit {
     if (this.activatedRoute.snapshot.queryParams['dispatch_id']) {
       this.activatedRoute.queryParams
         .subscribe(params => {
-          if(params['dispatch_id']){
+          if (params['dispatch_id']) {
             this.dispatchService.getById(params['dispatch_id']).subscribe(response => {
               this.angForm.patchValue({
                 id: response['id'],
@@ -49,9 +56,9 @@ export class DispatchComponent implements OnInit {
                 despachante: response['user']['nome'],
                 indicacao: response['recommendation'],
                 dtEntrada: formatDate(response['dataCriacao'], 'dd-MM-yyyy', 'pt-BR'),
-                dtEntradaOrg: response['dataEntradaOrgao'] != null ? formatDate(response['dataEntradaOrgao'], 'dd-MM-yyyy', 'pt-BR'): null,
-                dtPronto: response['dataPronto'] != null ? formatDate(response['dataPronto'], 'dd-MM-yyyy', 'pt-BR'): null,
-                dtEntrega: response['dataEntrega'] != null ? formatDate(response['dataEntrega'], 'dd-MM-yyyy', 'pt-BR'): null,
+                dtEntradaOrg: response['dataEntradaOrgao'] != null ? formatDate(response['dataEntradaOrgao'], 'dd-MM-yyyy', 'pt-BR') : null,
+                dtPronto: response['dataPronto'] != null ? formatDate(response['dataPronto'], 'dd-MM-yyyy', 'pt-BR') : null,
+                dtEntrega: response['dataEntrega'] != null ? formatDate(response['dataEntrega'], 'dd-MM-yyyy', 'pt-BR') : null,
                 obs: response['note'],
               });
               this.buildFormVehicle(response['listOrderVehicle']);
@@ -89,7 +96,13 @@ export class DispatchComponent implements OnInit {
       placa: ['', Validators.required],
       renavam: ['', Validators.required],
       status: [],
-      valor:[]
+      valor: []
+    });
+
+    this.formComplementVehicle = this.fbcomplement.group({
+      dtInput: ['', Validators.required],
+      renavam: ['', Validators.required],
+      obs: ['']
     });
 
     this.vehicles = this.dispatchService.getVehicle();
@@ -119,7 +132,7 @@ export class DispatchComponent implements OnInit {
 
   deleteVeicle(indexOfVehicle) {
 
-    if(this.vehiclesAdd[indexOfVehicle]._id.length != 0){
+    if (this.vehiclesAdd[indexOfVehicle]._id.length != 0) {
       this.vehiclesDel.push(this.vehiclesAdd[indexOfVehicle]._id);
     }
     this.vehiclesAdd.splice(indexOfVehicle, 1);
@@ -127,7 +140,7 @@ export class DispatchComponent implements OnInit {
 
   save() {
     const vehicles = <FormArray>this.angForm.get('vehicles');
-    
+
     vehicles.clear();
 
     this.vehiclesAdd.forEach(vehicle => {
@@ -170,7 +183,28 @@ export class DispatchComponent implements OnInit {
     })
   }
 
-  cancel(){
+  cancel() {
     this.createForm();
+  }
+
+  addComplement(vehicle){
+    const initialState = {
+      renavam: [vehicle.renavam]
+    }
+    this.modalRef = this.modalService.show(AddComplementVehicleModalComponent, {initialState});
+    this.modalRef.content.closeBtnName = 'Close'; 
+
+    this.modalRef.content.event.subscribe(res => {
+      
+      this.formComplementVehicle.patchValue({
+        dtInput: formatDate(this.nowDate, 'dd-MM-yyyy HH:mm:ss', 'pt-BR'),
+        renavam: res.data.renavam[0],
+        obs: res.data.obs
+      })
+
+      this.vehiclesComplement.push(this.formComplementVehicle.value);
+      
+    });
+
   }
 }
